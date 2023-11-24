@@ -12,6 +12,7 @@ function displayFavorites() {
       favoritesContainer.innerHTML += `
             <div class="favorite">
               <h3>${movie.title}</h3>
+              <button onclick="removeFromFavorites('${movie.imdbID}')">Remove from Favorites</button>
             </div>
           `;
     });

@@ -184,6 +184,13 @@ h1 {
   text-decoration: underline; /* Add underline on hover if desired */
 }
 
+#btn {
+  border: 1px solid #f9d3b4;
+  border-radius: 5px;
+  background-color: #1c1d1f;
+  color: #f9d3b4;
+}
+
 @media screen and (max-width: 600px) {
   .app {
     padding: 4rem 2rem;
