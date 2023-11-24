@@ -4,6 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Project to present</title>
+    <link rel="stylesheet" href="./style.css" />
   </head>
-  <body></body>
+  <body>
+    <div class="app">
+      <h1>JULYBATCH CINEMA</h1>
+      <div class="search">
+        <input id="searchmovie" type="text" placeholder="Search for movies" />
+        <img
+          id="searcicon"
+          src="./search.svg"
+          alt="search"
+          onclick="searchMovies()"
+        />
+      </div>
+
+      <div class="container">
+        <div class="movie">
+          <div>
+            <p>{movie.Year}</p>
+          </div>
+          <div>
+            <img alt="{movie.Title}" />
+          </div>
+          <div>
+            <span>{movie.Type}</span>
+            <h3>{movie.Title}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
 </html>
