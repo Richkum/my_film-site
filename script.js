@@ -33,7 +33,7 @@ async function fetchInitialMovies() {
       `;
     });
   } else {
-    moviesContainer.innerHTML = "<p>No movies found.</p>";
+    moviesContainer.innerHTML = "<p id='p'>No movies found.</p>";
   }
 }
 
@@ -73,7 +73,7 @@ async function searchMovies() {
             `;
       });
     } else {
-      moviesContainer.innerHTML = "<p>No movies found.</p>";
+      moviesContainer.innerHTML = "<p id='p'>No movies found.</p>";
     }
   }
 }

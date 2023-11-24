@@ -189,6 +189,7 @@ h1 {
   border-radius: 5px;
   background-color: #1c1d1f;
   color: #f9d3b4;
+  margin-top: 7rem;
 }
 
 .addToFavoritesBtn {
@@ -198,6 +199,20 @@ h1 {
   color: #f9d3b4;
   float: right;
   margin-top: 5px;
+}
+
+#p {
+  font-size: 3rem;
+  letter-spacing: 0.9px;
+  background: linear-gradient(
+    90deg,
+    rgb(255, 98, 98) 0%,
+    rgba(252, 23, 23, 0.322) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  width: fit-content;
 }
 
 @media screen and (max-width: 600px) {
