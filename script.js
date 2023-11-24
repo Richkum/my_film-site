@@ -25,6 +25,9 @@ async function fetchInitialMovies() {
             <h3><a href="${getMovieLink(element.imdbID)}" target="_blank">${
         element.Title
       }</a></h3>
+      <button onclick="addToFavorites('${element.imdbID}', '${
+        element.Title
+      }')">Add to Favorites</button>
           </div>
         </div>
       `;
@@ -62,6 +65,9 @@ async function searchMovies() {
                   <h3><a href="${getMovieLink(
                     element.imdbID
                   )}" target="_blank">${element.Title}</a></h3>
+                  <button onclick="addToFavorites('${element.imdbID}', '${
+          element.Title
+        }')">Add to Favorites</button>
                 </div>
               </div>
             `;
@@ -78,3 +84,27 @@ function getMovieLink(imdbID) {
 }
 
 getMovieLink();
+
+function addToFavorites(imdbID, title) {
+  // Get existing favorites from local storage or initialize an empty array
+  const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+  // Check if the movie is not already in favorites
+  if (!favorites.some((movie) => movie.imdbID === imdbID)) {
+    // Add the movie to favorites
+    favorites.push({ imdbID, title });
+
+    // Update local storage
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+
+    // You can optionally provide feedback to the user (e.g., alert or display a message)
+    alert(`${title} added to Favorites!`);
+  } else {
+    alert(`${title} is already in Favorites!`);
+  }
+}
+
+function viewFavorites() {
+  // You can adjust the URL based on the location of your favorites.html file
+  window.location.href = "fav.html";
+}
