@@ -191,6 +191,15 @@ h1 {
   color: #f9d3b4;
 }
 
+.addToFavoritesBtn {
+  border: 1px solid #f9d3b4;
+  border-radius: 5px;
+  background-color: #1c1d1f;
+  color: #f9d3b4;
+  float: right;
+  margin-top: 5px;
+}
+
 @media screen and (max-width: 600px) {
   .app {
     padding: 4rem 2rem;

@@ -1,6 +1,6 @@
 // Function to fetch and display favorite movies
 function displayFavorites() {
-  const favoritesContainer = document.querySelector(".favorites-container");
+  const favoritesContainer = document.querySelector(".movie");
 
   // Get favorites from local storage
   const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -12,7 +12,7 @@ function displayFavorites() {
       favoritesContainer.innerHTML += `
             <div class="favorite">
               <h3>${movie.title}</h3>
-              <button onclick="removeFromFavorites('${movie.imdbID}')">Remove from Favorites</button>
+              <button onclick="removeFromFavorites('${movie.imdbID}')" id="btn">Remove from Favorites</button>
             </div>
           `;
     });

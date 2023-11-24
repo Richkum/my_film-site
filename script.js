@@ -1,6 +1,6 @@
 const searchIcon = document.getElementById("searchicon");
 const searchInput = document.getElementById("searchmovie");
-const api_url = "http://www.omdbapi.com?apikey=cc1540e7";
+const api_url = "https://www.omdbapi.com?apikey=cc1540e7";
 const moviesContainer = document.querySelector(".container");
 
 async function fetchInitialMovies() {
@@ -25,7 +25,9 @@ async function fetchInitialMovies() {
             <h3><a href="${getMovieLink(element.imdbID)}" target="_blank">${
         element.Title
       }</a></h3>
-   
+      <button onclick="addToFavorites('${element.imdbID}', '${
+        element.Title
+      }')" class="addToFavoritesBtn">Add to Favorites</button>
           </div>
         </div>
       `;
@@ -63,7 +65,9 @@ async function searchMovies() {
                   <h3><a href="${getMovieLink(
                     element.imdbID
                   )}" target="_blank">${element.Title}</a></h3>
-               
+                  <button onclick="addToFavorites('${element.imdbID}', '${
+          element.Title
+        }')" class="addToFavoritesBtn">Add to Favorites</button>
                 </div>
               </div>
             `;
