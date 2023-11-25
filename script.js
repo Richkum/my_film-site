@@ -65,11 +65,11 @@ async function searchMovies() {
                   <h3><a href="${getMovieLink(
                     element.imdbID
                   )}" target="_blank">${element.Title}</a></h3>
-                  <button onclick="addToFavorites('${element.imdbID}', '${
+                  <button onclick="addToFavorites(${element.imdbID}, ${
           element.Year
-        }', '${element.Poster}', '${element.Title}', '${
+        }, ${element.Poster}, ${element.Title}, ${
           element.Type
-        }')" class="addToFavoritesBtn">Add to Favorites</button>
+        })" class="addToFavoritesBtn">Add to Favorites</button>
                 </div>
               </div>
             `;
@@ -94,11 +94,11 @@ function getMovieLink(imdbID) {
 }
 getMovieLink();
 
-function addToFavorites(imdbID, year, poster, title, type) {
+function addToFavorites(imdbID, title, year) {
   const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
   if (!favorites.some((movie) => movie.imdbID === imdbID)) {
-    favorites.push({ imdbID, year, poster, title, type });
+    favorites.push({ imdbID, title, year });
     localStorage.setItem("favorites", JSON.stringify(favorites));
     alert(`${title} added to Favorites!`);
   } else {

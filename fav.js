@@ -1,4 +1,23 @@
-function displayFavorites() {
+async function getMoviePoster(imdbID) {
+  const apiKey = "cc1540e7";
+  const apiUrl = `http://www.omdbapi.com/?apikey=${apiKey}&i=${imdbID}`;
+
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+
+    if (data.Poster && data.Poster !== "N/A") {
+      return data.Poster;
+    } else {
+      return "https://via.placeholder.com/100x150?text=No+Image";
+    }
+  } catch (error) {
+    console.error("Error fetching movie poster:", error);
+    return "https://via.placeholder.com/100x150?text=Error";
+  }
+}
+
+async function displayFavorites() {
   const favoritesContainer = document.querySelector(".container");
 
   const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -6,17 +25,19 @@ function displayFavorites() {
   if (favorites.length > 0) {
     favoritesContainer.innerHTML = "";
 
-    favorites.forEach((movie) => {
+    for (const movie of favorites) {
+      const posterUrl = await getMoviePoster(movie.imdbID);
+
       favoritesContainer.innerHTML += `
       <div class="movie">
       <div>
-        <p>${movie.year}</p>
+        <p>{movie.Year}</p>
       </div>
       <div>
-        <img src="${movie.poster}" />
+      <img src="${posterUrl}" alt="${movie.title} Poster" />
       </div>
       <div>
-        <span>${movie.type}</span>
+        <span>{movie.Type}</span>
         <h3><a href="${getMovieLink(movie.imdbID)}" target="_blank">${
         movie.title
       }</a></h3>
@@ -25,24 +46,19 @@ function displayFavorites() {
         }')" class="addToFavoritesBtn">remove from favorites</button>
       </div>
     </div>
-          `;
-    });
+      `;
+    }
   } else {
     favoritesContainer.innerHTML = "<p id='p'>No favorite movies yet.</p>";
   }
 }
+
 displayFavorites();
 
 function getMovieLink(imdbID) {
   return `https://www.imdb.com/title/${imdbID}/`;
 }
 getMovieLink();
-
-// function getMoviePoster(imdbID) {
-//   // You might need to fetch the poster using IMDb ID from another source
-//   // For simplicity, this function returns a placeholder image
-//   return `https://via.placeholder.com/100x150?text=No+Image`;
-// }
 
 function removeFromFavorites(imdbID) {
   const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -53,5 +69,7 @@ function removeFromFavorites(imdbID) {
   displayFavorites();
 }
 
-// const removeButton = document.getElementById(`remove-${movie.imdbID}`);
-// removeButton.addEventListener("click", () => removeFromFavorites(movie.imdbID));
+function clearFavorites() {
+  localStorage.removeItem("favorites");
+  displayFavorites();
+}
