@@ -66,7 +66,9 @@ async function searchMovies() {
                     element.imdbID
                   )}" target="_blank">${element.Title}</a></h3>
                   <button onclick="addToFavorites('${element.imdbID}', '${
-          element.Title
+          element.Year
+        }', '${element.Poster}', '${element.Title}', '${
+          element.Type
         }')" class="addToFavoritesBtn">Add to Favorites</button>
                 </div>
               </div>
@@ -79,16 +81,24 @@ async function searchMovies() {
 }
 searchMovies();
 
+function handleSearchKeyDown(event) {
+  if (event.key === "Enter") {
+    searchMovies();
+  }
+}
+searchInput.addEventListener("keydown", handleSearchKeyDown);
+searchMovies();
+
 function getMovieLink(imdbID) {
   return `https://www.imdb.com/title/${imdbID}/`;
 }
 getMovieLink();
 
-function addToFavorites(imdbID, title) {
+function addToFavorites(imdbID, year, poster, title, type) {
   const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
   if (!favorites.some((movie) => movie.imdbID === imdbID)) {
-    favorites.push({ imdbID, title });
+    favorites.push({ imdbID, year, poster, title, type });
     localStorage.setItem("favorites", JSON.stringify(favorites));
     alert(`${title} added to Favorites!`);
   } else {
